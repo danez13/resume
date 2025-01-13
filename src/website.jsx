@@ -1,5 +1,8 @@
-import { StrictMode } from 'react'
+import { StrictMode, useState } from 'react'
 import { createRoot } from 'react-dom/client'
+
+import PropTypes from "prop-types"
+
 import './stylesheet.css'
 import profilePic from './assets/portrait.jpg'
 import linkedin from './assets/linkedin.png'
@@ -9,30 +12,44 @@ import hacker from "./assets/hacker.png"
 import plane from "./assets/plane.png"
 import windows from "./assets/windows.png"
 import artificial_intelligence from "./assets/artificial-intelligence.png"
+
+
 function Header(){
+  const sections = [
+    {title:"WELCOME", link:"#section1"},
+    {title:"EDUCATION", link:"#section2"},
+    {title:"SKILLS", link:"#section3"},
+    {title:"EXPERIENCE", link:"#section4"},
+    {title:"PROJECTS", link:"#section5"},
+    {title:"HONORS", link:"#section6"},
+    {title:"LEADERSHIP", link:"#section7"},
+  ]
+
+  const listItems = sections.map(section=><li key={section.title}><a href={section.link} className="nav-link">{section.title}</a></li>)
   return (
       <header>
           <nav className="navbar">
               <ul>
-              <li><a href="#section1" className="nav-link">WELCOME</a></li>
-              <li><a href="#section2" className="nav-link">EDUCATION</a></li>
-              <li><a href="#section3" className="nav-link">SKILLS</a></li>
-              <li><a href="#section4" className="nav-link">EXPERIENCE</a></li>
-              <li><a href="#section5" className="nav-link">PROJECTS</a></li>
-              <li><a href="#section6" className="nav-link">HONORS</a></li>
-              <li><a href="#section7" className="nav-link">LEADERSHIP</a></li>
+                {listItems}
               </ul>
           </nav>
       </header>
   );
 }
 
-function Socials(props){
+function Socials({link="https://www.youtube.com/watch?v=dQw4w9WgXcQ",label="PlaceHolder",image="https://placehold.co/600x400",alt="PlaceHolder"}){
   return (
-  <a href={props.link} aria-label={props.label}>
-    <img src={props.image} alt={props.alt}></img>
+  <a href={link} aria-label={label}>
+    <img src={image} alt={alt}></img>
   </a>
   );
+}
+
+Socials.propTypes = {
+  link: PropTypes.string,
+  label: PropTypes.string,
+  image: PropTypes.string,
+  alt: PropTypes.string
 }
 
 function Section1(){
@@ -70,20 +87,28 @@ function Section1(){
     );
 }
 
-function Education(props){
+function Education({school="Florida International University", degree="degree", graduated="Graduated"}){
   return (
     <div className="education" id="FIU">
-        <h4>{props.school}</h4>
-        <p>{props.degree}, <i>{props.graduated}</i></p>
+        <h4>{school}</h4>
+        <p>{degree}, <i>{graduated}</i></p>
     </div>
   )
 }
 
+Education.propTypes = {
+  school: PropTypes.string,
+  degree: PropTypes.string,
+  graduated: PropTypes.string,
+}
+
 function Coursework(){
+  const courses = ["Discrete Mathematics", "Data Structures and Algorithms", "Theory of Algorithms", "AI", "Machine Learning", "Database I", "Calculus I", "Calculus II", "Physics I", "Physics II", "Modern Physics"]
+  const coursesString = courses.join(', ');
   return (
     <div className="education" id="RC">
         <h4>Relevant Coursework</h4>
-        <p>Discrete Mathematics, Data Structures and Algorithms, Theory of Algorithms, AI, Machine Learning, Database I, Calculus I, Calculus II, Physics I, Physics II, Modern Physics </p>
+        <p>{coursesString}</p>
     </div>
   );
 }
@@ -92,13 +117,11 @@ function Section2(){
   return (
       <section id="section2" className="section">
           <h2>Education</h2>
-          <Education 
-            school="Florida International University"
+          <Education
             degree="Bachelors of Science in Computer Science"
             graduated="December 2024"/>
 
           <Education 
-            school="Florida International University"
             degree="Masters of Science in Computer Science"
             graduated="Expected December 2026"/>
 
@@ -107,22 +130,43 @@ function Section2(){
   );
 }
 
+function Skills({heading="Heading", contents=["stuff","more stuff", "even more stuff"]}){
+  const contentsString = contents.join(", ")
+  return (
+    <div className="skills">
+      <p><b>{heading}:</b> {contentsString}</p>
+    </div>
+  );
+}
+
+Skills.propTypes = {
+  heading:PropTypes.string,
+  isLibraries:PropTypes.bool,
+  contents:PropTypes.arrayOf(PropTypes.string),
+  libaries:PropTypes.arrayOf(PropTypes.string)
+}
+
 function Section3(){
   return (
   <section id="section3" className="section">
     <h2>Skills & Technologies</h2>
-    <div className="skills">
-      <p><b>Soft Skills:</b> Teamwork, Time Management, Communication</p>
-    </div>
-    <div className="skills">
-      <p><b>Languages:</b> Python, Java, C, C++, HTML, CSS, Batch, Bash</p>
-    </div>
+
+    <Skills 
+      heading="Soft Skills"
+      contents={["Teamwork", "Time Management", "Communication"]}/>
+
+    <Skills 
+      heading="Languages"
+      contents={["Python","Java","C","C++","HTML","CSS","Batch","Bash","JavaScript"]}/>
+
     <div className="skills">
       <p><b>Libraries:</b> numpy<i>(Python)</i>, pandas<i>(Python)</i>, matplotlib<i>(Python)</i>, scikit-learn<i>(Python)</i>, tensorflow<i>(Python)</i>, keras<i>(Python)</i>, requests<i>(Python)</i>, BeautifulSoup<i>(Python)</i>, Transformer<i>(Python)</i>, Tokenizer<i>(Python)</i>, tqdm<i>(Python)</i>, Scipy<i>(Python)</i>, Torch<i>(Python)</i>, OpenGL<i>(C++)</i></p>
     </div>
-    <div className="skills">
-      <p><b>Tools:</b> Netbeans, PyCharm, Visual Studio, IntelliJ, Git, Google Cloud, Microsoft office</p>
-    </div>
+    
+    <Skills 
+      heading="Tools"
+      contents={["Netbeans", "PyCharm", "Visual Studio", "IntelliJ", "Git", "Google Cloud", "Microsoft Office"]}/>
+
     <div className="skills">
       <p><b>Certifications:</b></p>
       <p><strong>linkedin learning:</strong></p>
@@ -135,17 +179,27 @@ function Section3(){
   );
 }
 
-function Experience(props){
+function Experience({title="Title",organization="Organization",location="Miami, FL",start="Present", end="Present",sub_head="sub-Head",description="description"}){
   return(
     <div className="experience">
-      <h4>{props.title}</h4>
-      <p>{props.organization}, {props.location} - <b>{props.time}</b></p>
+      <h4>{title}</h4>
+      <p>{organization}, {location} - <b>{start} - {end}</b></p>
       <ul>
-        <li><p><b>{props.sub_head}:</b> {props.description}
+        <li><p><b>{sub_head}:</b> {description}
           </p></li>
       </ul>
     </div>
   );
+}
+
+Experience.propTypes={
+  title: PropTypes.string,
+  organization: PropTypes.string,
+  location: PropTypes.string,
+  start: PropTypes.string,
+  end: PropTypes.string,
+  sub_head: PropTypes.string,
+  description: PropTypes.string
 }
 
 function Section4 (){
@@ -157,7 +211,8 @@ function Section4 (){
       title="Student IT Lab Assistant / Helpdesk"
       organization="Nicole wertheim college of nursing"
       location="Miami, FL"
-      time="August 2024 - Present"
+      start="August 2024"
+      end="Present"
       sub_head="Responsabilities"
       description="Performs network troubleshooting on equipment, hardware, and repair. 
           Assists with coordinating minor IT-related projects in the NWCNHS. 
@@ -168,7 +223,8 @@ function Section4 (){
       title="ML Engineer"
       organization="GoFans"
       location="Miami, FL"
-      time="December 2024 - Present"
+      start="December 2024"
+      end="Present"
       sub_head="tasks"
       description="Conducted A/B testing and fine-tuned models to enhance performance based on user feedback and app analytics.
           Collaborated cross-functionally with app developers, UX/UI designers, and product managers to integrate AI-driven features seamlessly into the app ecosystem.
@@ -179,27 +235,38 @@ function Section4 (){
       title="Vice President & Tech Lead"
       organization="CodeCrunch"
       location="Miami, FL"
-      time="September 2024 - Present"
+      start="September 2024"
+      end="Present"
       sub_head="Contributions"
       description="Coordinate weekly club events, Led marketing campaigns, Streamlined logistics for event planning, Collaborated with the executive team to foster a vibrant community. Organized and conducted workshops on topics such as Data Structures, Data Science and Artificial Intelligence, catering to diverse skill levels. Supervised technical projects and provided mentorship for members working on AI and data science applications."/>
   </section>
   );
 }
-function Project(props){
+function Project({icon="https://placehold.co/600x400",alt="PlaceHolder",title="Title",description="description",tech_stack=["Tech", "More Tech", "Even More Tech"],proj_link="https://www.youtube.com/watch?v=dQw4w9WgXcQ"}){
+  const stackString = tech_stack.join(", ")
   return (
   <div className="project">
-    <div className="project-icon"><img src={props.icon} alt="basketball"></img></div>
+    <div className="project-icon"><img src={icon} alt={alt}></img></div>
     <div className="content">
-      <h4>{props.title}</h4>
-      <p>{props.description}</p>
-      <p><b>Tech Stack:</b> {props.tech_stack}</p>
+      <h4>{title}</h4>
+      <p>{description}</p>
+      <p><b>Tech Stack:</b> {stackString}</p>
       <div className="button-group">
-        <a href={props.proj_link} className="project-button"><b>VIEW PROJECT</b></a>
-        <a href="https://danez13-crrjd-data-driven-basetball-application-main-guwczn.streamlit.app/" className="project-button"><b>VIEW DEMO</b></a>
+        <a href={proj_link} className="project-button"><b>VIEW PROJECT</b></a>
+        {/* <a href="https://danez13-crrjd-data-driven-basetball-application-main-guwczn.streamlit.app/" className="project-button"><b>VIEW DEMO</b></a> */}
       </div>
     </div>
   </div>
   );
+}
+
+Project.propTypes = {
+  icon: PropTypes.string,
+  alt: PropTypes.string,
+  title: PropTypes.string,
+  description: PropTypes.string,
+  tech_stack:PropTypes.arrayOf(PropTypes.string),
+  proj_link: PropTypes.string
 }
 
 function Projects(){
@@ -207,46 +274,50 @@ function Projects(){
     <div id="projects-container">
       <Project 
         icon={basketball}
+        alt="basketball"
         title="CRRJD: Data Driven NBA Application" 
         description="the go for all things NBA statistics.
           focused to improve user experience, and effectiveness.
           with a customizeable interface, a user is able to look through information and analytics of every player in the NBA both active and all-time, 
           able to give users information of upcoming, past, and present games with information on where the game will be played. 
           an able to compare two players of the NBA and compare analytics between them."
-          tech_stack="streamlit, nba api, pandas"
+          tech_stack={["streamlit", "nba api", "pandas"]}
           proj_link="https://github.com/danez13/CRRJD_data-driven-basetball-application"/>
       <Project 
-        icon={hacker} 
+        icon={hacker}
+        alt="hacker" 
         title="Pantheon:All-in-one hacking tool"
         description="Pantheon is a versatile information-gathering and scanning tool designed to collect, analyze, and identify potential vulnerabilities in target systems. 
         It features two main modules: Information Gathering, which focuses on extracting data through website scraping (e.g., links, emails, site mapping), and Scanning, which conducts comprehensive port scans on a target system. 
         With customizable options such as page limits, detailed scraping, formatted output, and data storage, Pantheon offers flexibility and precision."
-        tech_stack="BeautifulSoup, requests, whois, socket"
+        tech_stack={["BeautifulSoup", "requests", "whois", "socket"]}
         proj_link="https://github.com/danez13/Pantheon-ALL-in-one-Hacking-Tool"/>
       <Project 
         icon={windows}
+        alt="windows logo"
         title="Unified Write Filter Batch interface"
         description="runs microsoft Unified Write Filter (UWF) commands through a interface to make it easier for a user to run the commands.
         there are 6 Menus that are available from the starting menu, each menu presents a sub-interface for each sub-command available to the UWF commandline tool.
         each sub-menu offers each possible sub-command that the Unified Write Filter Manager tool (UWFMGR) has available."
-        tech_stack="Batch, powershell, drives, system services and features"
-        proj_link="https://github.com/danez13/UWF"
-        />
+        tech_stack={["Batch", "powershell", "drives", "system services and features"]}
+        proj_link="https://github.com/danez13/UWF"/>
       <Project
         icon={artificial_intelligence}
+        alt="artificial intelligence"
         title="XAI"
         description='an experimental review of the paper "A Diagnostic Study of Explainability Techniques for Text Classification".
         investigating the effectiveness and reliability of various explainability methods applied to text classification tasks.
         systematically evaluating popular techniques, such as attention mechanisms, saliency maps, and feature attribution methods, across diverse datasets and models.' 
-        tech_stack="numpy, matplotlib, torch, tqdm, captum, lime, nltk, scikit-learn, sentencepiece, tokenizers, torchvision, transformers, pandas, fastparquet"
+        tech_stack={["numpy", "matplotlib", "torch", "tqdm", "captum", "lime", "nltk", "scikit-learn", "sentencepiece", "tokenizers", "torchvision", "transformers", "pandas", "fastparquet"]}
         proj_link="https://github.com/danez13/XAI"/>
       <Project
         icon={plane}
+        alt="airplane"
         title="Air Craft Maintaince Classifier"
         description="Different techniques such as boosted ensembles, neural networks, and support vector machines are utilized to predict maintenance events. 
         The repository also provides data visualization tools to analyze engine performance and maintenance history. 
         It's designed to assist in predictive maintenance tasks by accurately identifying potential issues in aircraft before they lead to failures."
-        tech_stack="pandas, numpy, matplotlib, scikit-learn, keras, tensorflow, seaborn"
+        tech_stack={["pandas", "numpy", "matplotlib", "scikit-learn", "keras", "tensorflow", "seaborn"]}
         proj_link="https://github.com/danez13/Air-Craft-Maintaince-Classifier" />
     </div>
   );
