@@ -1,3 +1,4 @@
+
 /* Reset and basic styling */
 body {
     margin: 0;
@@ -254,15 +255,17 @@ a {
   color:rgb(211, 255, 254);
   
 }
+
 #section5 p b{
   color: whitesmoke;
   
 }
+
 #section5 #projects-container{
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  /* border: 2px solid red; */
+  grid-template-columns: repeat(auto-fit, minmax(400px, 600px));
 }
+
 #section5 #projects-container .project{
   margin:0;
   padding: 0;
