@@ -146,7 +146,28 @@ Skills.propTypes = {
   libaries:PropTypes.arrayOf(PropTypes.string)
 }
 
+function Certifications({from="where", certs = [{title:"cert title", link:"https://www.youtube.com/watch?v=dQw4w9WgXcQ"}]}){
+  const listCerts = certs.map(cert => <li key={cert.title}><a href={cert.link}>"{cert.title}"</a></li>)
+  return(
+    <div>
+      <p><strong>{from}:</strong></p>
+      <ul>
+        {listCerts}
+      </ul>
+    </div>
+  );
+}
+
+Certifications.propTypes = {
+  from: PropTypes.string,
+  certs: PropTypes.arrayOf(PropTypes.object)
+}
+
 function Section3(){
+  const certificates = [
+    {title:"Applied Machine Learning: Ensemble Learning",link:"https://www.linkedin.com/learning/certificates/871ef1105c35aa1b27bddc62d175bf5542a0e1664a9e3490371ffc21d54241dd?trk=public_profile_see-credential"},
+    {title:"Introduction to Large Language Models",link:"https://www.linkedin.com/learning/certificates/bc6504cf78a9cc6ac842748c690be29f86cf7d0faba59fe77a51781f8051d892?trk=public_profile_see-credential"}
+  ]
   return (
   <section id="section3" className="section">
     <h2>Skills & Technologies</h2>
@@ -168,12 +189,11 @@ function Section3(){
       contents={["Netbeans", "PyCharm", "Visual Studio", "IntelliJ", "Git", "Google Cloud", "Microsoft Office"]}/>
 
     <div className="skills">
-      <p><b>Certifications:</b></p>
-      <p><strong>linkedin learning:</strong></p>
-      <ul>
-        <li><a href="https://www.linkedin.com/learning/certificates/871ef1105c35aa1b27bddc62d175bf5542a0e1664a9e3490371ffc21d54241dd?trk=public_profile_see-credential">"Applied Machine Learning: Ensemble Learning"</a></li>
-        <li><a href="https://www.linkedin.com/learning/certificates/bc6504cf78a9cc6ac842748c690be29f86cf7d0faba59fe77a51781f8051d892?trk=public_profile_see-credential">"Introduction to Large Language Models"</a></li>
-      </ul>
+      
+      \
+      <Certifications
+        from="LinkedIn Learning"
+        certs={certificates}/>
     </div>
   </section>
   );
@@ -242,7 +262,7 @@ function Section4 (){
   </section>
   );
 }
-function Project({icon="https://placehold.co/600x400",alt="PlaceHolder",title="Title",description="description",tech_stack=["Tech", "More Tech", "Even More Tech"],proj_link="https://www.youtube.com/watch?v=dQw4w9WgXcQ"}){
+function Project({icon="https://placehold.co/600x400",alt="PlaceHolder",hasDemo=false, demoLink="https://www.youtube.com/watch?v=dQw4w9WgXcQ",title="Title",description="description",tech_stack=["Tech", "More Tech", "Even More Tech"],proj_link="https://www.youtube.com/watch?v=dQw4w9WgXcQ"}){
   const stackString = tech_stack.join(", ")
   return (
   <div className="project">
@@ -253,7 +273,7 @@ function Project({icon="https://placehold.co/600x400",alt="PlaceHolder",title="T
       <p><b>Tech Stack:</b> {stackString}</p>
       <div className="button-group">
         <a href={proj_link} className="project-button"><b>VIEW PROJECT</b></a>
-        {/* <a href="https://danez13-crrjd-data-driven-basetball-application-main-guwczn.streamlit.app/" className="project-button"><b>VIEW DEMO</b></a> */}
+        {hasDemo?<a href={demoLink} className="project-button"><b>VIEW DEMO</b></a>:""}
       </div>
     </div>
   </div>
@@ -266,7 +286,9 @@ Project.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
   tech_stack:PropTypes.arrayOf(PropTypes.string),
-  proj_link: PropTypes.string
+  proj_link: PropTypes.string,
+  hasDemo:PropTypes.bool,
+  demoLink:PropTypes.string
 }
 
 function Projects(){
@@ -276,6 +298,8 @@ function Projects(){
         icon={basketball}
         alt="basketball"
         title="CRRJD: Data Driven NBA Application" 
+        hasDemo={true}
+        demoLink="https://danez13-crrjd-data-driven-basetball-application-main-guwczn.streamlit.app/"
         description="the go for all things NBA statistics.
           focused to improve user experience, and effectiveness.
           with a customizeable interface, a user is able to look through information and analytics of every player in the NBA both active and all-time, 
@@ -345,6 +369,7 @@ function Section6 (){
         <li> Active participant in technical workshops as an INIT Member, and supporting organizations like ALPFA FIU and SHPE FIU.</li>
       </ul>
     </div>
+
     <div className="development">
       <h4>Computing alliance of hispanic serving institutions undergraduate Research</h4>
       <p>September 2024 - June 2024</p>
@@ -354,7 +379,7 @@ function Section6 (){
           communication, and professional skills. Created a research plan, maintained a journal to report on research progress. 
         </li>
         <li>
-          <p>Researched projects included recreations of the following appers:</p>
+          <p>Researched projects included recreations of the following papers:</p>
           <ul>
             <li>TrojLLM: A Black-box Trojan Prompt Attack on Large Language Models</li>
             <li>TrojFSP: Trojan Insertion in Few-shot Prompt Tuning</li>
