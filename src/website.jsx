@@ -7,10 +7,12 @@ import './stylesheet.css'
 import profilePic from './assets/portrait.jpg'
 import linkedin from './assets/linkedin.png'
 import github from "./assets/github.png"
+import instagram from "./assets/instagram.png"
 import basketball from "./assets/basketball.png"
 import hacker from "./assets/hacker.png"
 import plane from "./assets/plane.png"
 import windows from "./assets/windows.png"
+import mlhub from "./assets/hub.png"
 import artificial_intelligence from "./assets/artificial-intelligence.png"
 
 
@@ -58,10 +60,13 @@ function Section1(){
             <div id="introduction">
                 <div id="text">
                     <h1><b>Daniel Hernandez</b></h1>
-                    <p>I’m a computer science student who is passionate about AI, cybersecurity, research, and community-building. 
-                        As the <strong>Vice-president and tech lead of Code Crunch Club</strong>, I empower students to excel in technical interview preparation, 
-                        Datascience/AI, and software development by fostering an inclusive and collaborative environment. 
-                        Dive into my journey of coding, leadership, and community service!
+                    <p>I’m a computer science graduate currently pursuing my M.S. in Computer Science at Florida International University, with a passion for artificial intelligence, cybersecurity, research, and building inclusive tech communities. 
+
+                      Currently, I work as a Data Scientist at GoFans.AI, where I collaborate with cross-functional teams to embed AI-driven features into live products. 
+                      Additionally currently, I am a Tech Lead for the Code Crunch Club, I lead workshops on data structures, AI, and software development, helping students thrive in interview prep and real-world coding scenarios.
+                      I’ve also contributed to mentored research through the CAHSI Local REU program, focusing on vulnerabilities in generative AI.
+
+                      From crafting intelligent NBA data applications to investigating AI model security, I’m driven by curiosity, impact, and the belief that tech should empower people. Dive into my journey of coding, leadership, and service!
                     </p>
                 </div>
                 <div id="social-links">
@@ -74,6 +79,11 @@ function Section1(){
                       link="https://github.com/danez13"
                       label="GitHub"
                       image={github}
+                      alt="GitHub"/>
+                    <Socials 
+                      link="https://www.instagram.com/cloverscript/?hl=en#"
+                      label="Instagram"
+                      image={instagram}
                       alt="GitHub"/>
                 </div>
                 <div id="learn-more-btn">
@@ -174,19 +184,22 @@ function Section3(){
 
     <Skills 
       heading="Soft Skills"
-      contents={["Teamwork", "Time Management", "Communication"]}/>
+      contents={["Teamwork", "Time Management", "Communication", "Initiative", "Luck"]}/>
 
     <Skills 
       heading="Languages"
       contents={["Python","Java","C","C++","HTML","CSS","Batch","Bash","JavaScript"]}/>
 
     <div className="skills">
-      <p><b>Libraries:</b> numpy<i>(Python)</i>, pandas<i>(Python)</i>, matplotlib<i>(Python)</i>, scikit-learn<i>(Python)</i>, tensorflow<i>(Python)</i>, keras<i>(Python)</i>, requests<i>(Python)</i>, BeautifulSoup<i>(Python)</i>, Transformer<i>(Python)</i>, Tokenizer<i>(Python)</i>, tqdm<i>(Python)</i>, Scipy<i>(Python)</i>, Torch<i>(Python)</i>, OpenGL<i>(C++)</i></p>
+      <p><b>Libraries:</b> FastAPI<i>(Python)</i>, numpy<i>(Python)</i>, pandas<i>(Python)</i>, matplotlib<i>(Python)</i>, 
+      scikit-learn<i>(Python)</i>, tensorflow<i>(Python)</i>, keras<i>(Python)</i>, requests<i>(Python)</i>, BeautifulSoup<i>(Python)</i>, 
+      Transformer<i>(Python)</i>, Tokenizer<i>(Python)</i>, tqdm<i>(Python)</i>, Scipy<i>(Python)</i>, Torch<i>(Python)</i>, OpenGL<i>(C++)</i>, 
+      React<i>(JavaScript)</i></p>
     </div>
     
     <Skills 
       heading="Tools"
-      contents={["Netbeans", "PyCharm", "Visual Studio", "IntelliJ", "Git", "Google Cloud", "Microsoft Office"]}/>
+      contents={["Netbeans", "PyCharm", "Visual Studio", "IntelliJ", "Git", "Google Cloud", "Microsoft Office", "AWS", "Docker"]}/>
 
     <div className="skills">
       
@@ -252,7 +265,7 @@ function Section4 (){
           Engineered a scalable pipeline for training, testing, and validating the emotion detection model, reducing development time."/>
 
     <Experience 
-      title="Vice President & Tech Lead"
+      title="Tech Lead"
       organization="CodeCrunch"
       location="Miami, FL"
       start="September 2024"
@@ -307,6 +320,19 @@ function Projects(){
           an able to compare two players of the NBA and compare analytics between them."
           tech_stack={["streamlit", "nba api", "pandas"]}
           proj_link="https://github.com/danez13/CRRJD_data-driven-basetball-application"/>
+      <Project 
+        icon={mlhub}
+        alt="Hub"
+        title="ML Hub" 
+        hasDemo={true}
+        demoLink="https://danez13-ml-hub-main-k2dbtt.streamlit.app/"
+        description="This platform is a comprehensive web-based solution designed for data scientists,
+                    ML engineers, and researchers to streamline the process of managing datasets, building models, 
+                    tracking experiments, and collaborating on machine learning projects. With an intuitive UI, robust backend,
+                    and scalable architecture, it supports end-to-end machine learning workflows—from data preprocessing to model 
+                    evaluation and versioning."
+          tech_stack={["streamlit", "pandas", "scikit-learn"]}
+          proj_link="https://github.com/danez13/ML-Hub"/>
       <Project 
         icon={hacker}
         alt="hacker" 
