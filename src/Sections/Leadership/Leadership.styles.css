@@ -1,0 +1,36 @@
+#leadership {
+    background-color: rgb(23, 76, 116);
+    color:rgb(211, 255, 254);
+    font-size: 1rem;
+}
+#leadership h2 {
+    color:whitesmoke;
+}
+#leadership .development{
+
+    margin-bottom: 2%;
+}
+#leadership .development h4{
+    margin-top:5%;
+    color:whitesmoke;
+}
+#leadership .development ul{
+margin-left: 5%;
+list-style-type: disc;
+}
+#leadership .development ul li{
+margin-bottom: 1%;
+}
+#leadership .development ul li ul{
+list-style-type: disc;
+margin-left:5%;
+}
+
+@media (max-width:768px){
+    #leadership .development ul{
+        margin-top: 3%;
+    }
+    #leadership .development p{
+        margin-top: 0.5%;
+    }
+}

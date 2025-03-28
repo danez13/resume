@@ -1,0 +1,27 @@
+.skills {
+    margin:3%;
+}
+.skills p{
+    padding:0;
+    margin: 0;
+    color: rgb(211, 255, 254);
+}
+.skills p b{
+    color: whitesmoke;
+}
+.skills p strong{
+    color: rgb(211, 255, 254);
+}
+.skills ul{
+    margin-left: 5%;
+    list-style-type: disc;
+}
+.skills ul li::marker{
+    color: rgb(211, 255, 254);
+}
+.skills p i{
+    color: rgb(165, 206, 204);
+}
+.skills ul li a{
+    color: rgb(150, 219, 218);
+}
