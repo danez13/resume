@@ -8,7 +8,7 @@ import artificial_intelligence from "/src/assets/artificial-intelligence.png"
 import "./Projects.styles.css"
 function Projects(){
     return(
-        <section id="projects">
+        <section id="Projects">
             <h2>Projects</h2>
             <p>Here are some of the key projects I've worked on, demonstrating my skills and expertise in various domains</p>
             <div id="projects-container">

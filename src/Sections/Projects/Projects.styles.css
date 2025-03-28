@@ -1,19 +1,19 @@
-#projects {
+#Projects {
     background-color: #358696;
 }
   
-#projects h2 {
+#Projects h2 {
     color:whitesmoke;
 }
 
-#projects p{
+#Projects p{
     color:rgb(211, 255, 254);
 }
 
-#projects p b{
+#Projects p b{
     color: whitesmoke;
 }
-#projects #projects-container{
+#Projects #projects-container{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(400px, 600px));
 }

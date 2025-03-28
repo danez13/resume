@@ -2,7 +2,7 @@ import Experience from "/src/Components/Experience/Experience.jsx"
 import "./Experiences.styles.css"
 function Experiences(){
     return (
-      <section id="experiences">
+      <section id="Experiences">
         <h2>Professional Experience</h2>
     
         <Experience 

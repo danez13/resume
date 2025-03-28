@@ -1,7 +1,7 @@
 import "./Leadership.styles.css"
 function Leadership (){
     return (
-      <section id="leadership" className="section">
+      <section id="Leadership" className="section">
         <h2>Leadership and Professional development</h2>
         <p>Here, you will find a detailed overview of the initiatives I have led or been a significant part of, showcasing my commitment to growth and excellence in both technical and leadership capacities.</p>
         <div className="development">

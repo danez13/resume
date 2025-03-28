@@ -1,13 +1,12 @@
 import './Header.styles.css'
 function Header(){
     const sections = [
-      {title:"WELCOME", link:"#section1"},
-      {title:"EDUCATION", link:"#section2"},
-      {title:"SKILLS", link:"#section3"},
-      {title:"EXPERIENCE", link:"#section4"},
-      {title:"PROJECTS", link:"#section5"},
-      {title:"HONORS", link:"#section6"},
-      {title:"LEADERSHIP", link:"#section7"},
+      {title:"HOME", link:"#About"},
+      {title:"EDUCATION", link:"#Education"},
+      {title:"SKILLS", link:"#SkillsTechs"},
+      {title:"EXPERIENCE", link:"#Experiences"},
+      {title:"PROJECTS", link:"#Projects"},
+      {title:"LEADERSHIP", link:"#Leadership"},
     ]
   
     const listItems = sections.map(section=><li key={section.title}><a href={section.link} className="nav-link">{section.title}</a></li>)
